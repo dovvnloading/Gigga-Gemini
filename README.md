@@ -22,7 +22,7 @@ Beyond standard chat functionality, this application engineers specific agentic 
 *   **Chain of Thought Visualization:** Renders the model's internal thinking process and planning steps before outputting the final response.
 *   **Full Multimodality:** Supports text, heavy image analysis, and document (PDF/Code) context ingestion.
 
-### 2. Deep Research Agent (SOTA)
+### 2. Deep Research Agent
 *   **Autonomous Agent Pipeline:** Implements a "Plan → Swarm → Filter → Synthesize" architecture.
 *   **Step-by-Step Execution:**
     1.  **Strategist:** Breaks a user query into orthogonal research dimensions.
