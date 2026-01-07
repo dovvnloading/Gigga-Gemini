@@ -1,7 +1,7 @@
 # System Architecture
 
 ## Executive Summary
-The **Gemini Neural Interface** is a client-side-heavy, high-fidelity Single Page Application (SPA) designed to act as a neural bridge between user intent and Google's Multimodal Gemini models.
+The **Gigga Gemini Interface** is a client-side-heavy, high-fidelity Single Page Application (SPA) designed to act as a neural bridge between user intent and Google's Multimodal Gemini models.
 
 Unlike traditional chat interfaces, this system implements an **Agentic Orchestration Layer** directly in the browser. It manages complex state machines for "Deep Research," handles real-time bidirectional audio streaming via WebSockets, and creates generative artifacts (Canvas) dynamically. The architecture prioritizes low latency, local state persistence, and optimistic UI updates to ensure a seamless "thought-speed" interaction.
 
