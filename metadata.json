@@ -1,0 +1,8 @@
+{
+  "name": "Gemini",
+  "description": "A high-fidelity Gemini wrapper featuring the latest Gemini 3 & 2.5 models, Live API (real-time voice), Image Generation, and Multimodal Chat.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

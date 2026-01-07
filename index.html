@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Google+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Dark Mode Defaults (Gemini Dark) */
+        --bg-color: #131314;
+        --sidebar-bg: #1E1F20;
+        --surface-color: #1E1F20;
+        --surface-highlight: #2D2E30;
+        
+        --text-primary: #E3E3E3;
+        --text-secondary: #8E9196;
+        --text-inverse: #131314;
+        
+        --border-color: rgba(255, 255, 255, 0.1);
+        --border-highlight: rgba(255, 255, 255, 0.2);
+        
+        --glass-surface: rgba(30, 31, 32, 0.70);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        
+        --hover-bg: rgba(255, 255, 255, 0.08);
+        --active-bg: rgba(255, 255, 255, 0.12);
+        
+        --accent-blue: #A8C7FA;
+        --accent-purple: #D96570; 
+        
+        --gemini-grad-start: rgba(66, 133, 244, 0.1);
+        --gemini-grad-end: rgba(217, 101, 112, 0.08);
+
+        /* Icon Colors - Dark */
+        --icon-blue: #A8C7FA;
+        --icon-red: #F28B82;
+        --icon-purple: #D0BCFF;
+        --icon-green: #81C995;
+        --icon-yellow: #FDD663;
+      }
+
+      [data-theme="light"] {
+        --bg-color: #F0F4F9;
+        --sidebar-bg: #F0F4F9;
+        --surface-color: #FFFFFF;
+        --surface-highlight: #F5F7F8;
+        
+        --text-primary: #1F1F1F;
+        --text-secondary: #5F6368;
+        --text-inverse: #FFFFFF;
+        
+        --border-color: rgba(0, 0, 0, 0.12);
+        --border-highlight: rgba(0, 0, 0, 0.2);
+        
+        --glass-surface: rgba(255, 255, 255, 0.65);
+        --glass-border: rgba(0, 0, 0, 0.1);
+        
+        --hover-bg: rgba(0, 0, 0, 0.06);
+        --active-bg: rgba(0, 0, 0, 0.1);
+
+        --accent-blue: #0B57D0;
+        --accent-purple: #B3261E;
+        
+        --gemini-grad-start: rgba(66, 133, 244, 0.04);
+        --gemini-grad-end: rgba(217, 101, 112, 0.03);
+
+        /* Icon Colors - Light */
+        --icon-blue: #0B57D0;
+        --icon-red: #B3261E;
+        --icon-purple: #9334E6;
+        --icon-green: #188038;
+        --icon-yellow: #E37400;
+      }
+
+      body {
+        font-family: 'Google Sans', 'Inter', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .font-display {
+        font-family: 'Google Sans', sans-serif;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      
+      /* Gemini Deep Background */
+      .gemini-bg {
+        background-color: var(--bg-color);
+        background-image: 
+          radial-gradient(circle at 50% 0%, var(--gemini-grad-start) 0%, transparent 55%),
+          radial-gradient(circle at 100% 0%, var(--gemini-grad-end) 0%, transparent 40%);
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: background-color 0.3s ease;
+      }
+      
+      /* Glassmorphism Classes */
+      .glass-panel {
+        background: var(--glass-surface);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--glass-border);
+      }
+      
+      /* Refined Scrollbar */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+      }
+      
+      /* Text Selection */
+      ::selection {
+        background: rgba(168, 199, 250, 0.3);
+        color: inherit;
+      }
+      
+      [data-theme="light"] ::selection {
+        background: rgba(11, 87, 208, 0.15);
+      }
+
+      /* Animations */
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 0.8; }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 3s ease-in-out infinite;
+      }
+      
+      /* Markdown Styles Override for Theming */
+      .prose strong { color: var(--text-primary); font-weight: 600; }
+      .prose p { margin-bottom: 1.25em; line-height: 1.7; color: var(--text-primary); }
+      .prose h1, .prose h2, .prose h3, .prose h4 { color: var(--text-primary); font-family: 'Google Sans', sans-serif; }
+      .prose ul, .prose ol { color: var(--text-primary); }
+
+      /* Liquid Orb Animations */
+      @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@^16.1.0/",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@^16.1.0",
+    "remark-gfm": "https://esm.sh/remark-gfm@^4.0.1",
+    "remark-breaks": "https://esm.sh/remark-breaks@^4.0.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div class="gemini-bg"></div>
+    <div id="root"></div>
+    
+    <!-- SVG Filter for Liquid Gooey Effect -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
